@@ -11,5 +11,9 @@ extern char **environ;
 /* function prototype */
 char *_getline();
 
+/* strings */
+char *_strdup(char *s);
+int _strcmp(char *str1, char *str2);
+size_t _strlen(char *str);
 
 #endif
