@@ -10,23 +10,23 @@ char *_strdup(char *s)
 {
 	size_t loop, len;
 	char *dup;
-	
+
 	loop = len = 0;
 	while (s[len])
 		len++;
 
 	dup = malloc(sizeof(char) * (len + 1));
-	
+
 	if (!dup)
 		return (NULL);
-	
+
 	for (loop = 0; loop < len; loop++)
 	{
 		dup[loop] = s[loop];
 	}
 
 	dup[loop] = '\0';
-	
+
 	return (dup);
 }
 
@@ -48,7 +48,7 @@ int _strcmp(char *str1, char *str2)
 			return (1);
 		}
 	}
-	
+
 	if (*str1 == '\0' && *str2 == '\0')
 	{
 		return (0);
