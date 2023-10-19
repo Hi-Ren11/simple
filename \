@@ -1,0 +1,24 @@
+#include "gmama.h"
+
+/**
+ * get_line - reads an entire line from stdin
+ *
+ * Return: return the number of characters read and return -1 on failure
+ */
+
+char *get_line(void)
+{
+	ssize_t getlineRV;
+	char *line = NULL;
+	ssize_t len = 0;
+	
+	write(STDOUT_FILENO, "$ ", 2);
+	getlineRV = get_line(&ine, &len, stdin);
+
+	if (getlineRV == -1)
+	{
+		free(line);
+		return (NULL);
+	}
+	return (0);
+}
