@@ -1,31 +1,24 @@
 #include "gmama.h"
 
 /**
- * my_exit - Exit the shell
- * @input_token: The array of tokens
- *
- * This function exits the shell, taking an optional exit status from the
- * second token of the input tokens array.
+ * my_exit - simple impl of exit.
+ * @ptrs: structure containing all malloced memory
  */
-void my_exit(char **input_token)
+
+void my_exit(shell_t *ptrs)
 {
 	unsigned int i;
-	char *exit_str = input_token[1];
+	char *exit_str;
 
-	if (exit_str != NULL || input_token == NULL)
+	exit_str = ptrs->input_token[1];
+	if (exit_str != NULL || ptrs == NULL)
 	{
 		errno = 0;
 		for (i = 0; exit_str[i] != '\0'; i++)
 			errno = errno * 10 + (exit_str[i] - '0');
 	}
-	if (input_token)
-	{
-		free(input_token);
-	}
-
+	free_shell_t(ptrs);
 	if (errno > 255)
-	{
 		errno %= 256;
-	}
 	exit(errno);
 }
