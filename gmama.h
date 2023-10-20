@@ -3,6 +3,8 @@
 
 extern char **environ;
 
+#include <dirent.h>
+#include <signal.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <stddef.h>
