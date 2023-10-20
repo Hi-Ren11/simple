@@ -19,5 +19,6 @@ int _strcmp(char *str1, char *str2);
 size_t _strlen(char *str);
 char *_strdup(char *s);
 char *_strcat(char *dest, char *src);
+char *_strtok(char *str, const char *delim);
 
 #endif /* GMAMA_H */

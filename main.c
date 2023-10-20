@@ -12,6 +12,7 @@ int main(int argc, char **argv)
 {
 	int status = 0;
 	char *line;
+	(void) argc;
 
 	while (1)
 	{
@@ -29,10 +30,12 @@ int main(int argc, char **argv)
 			}
 			break;
 		}
+
 		status = run_command(line, argv[0]);
 
 		free(line);
 	}
 
-	return (status);
+	return status;
 }
+

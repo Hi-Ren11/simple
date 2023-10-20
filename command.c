@@ -11,7 +11,7 @@ int run_command(char *command_line, char *filename)
 {
 	pid_t child_pid;
 	int status = 0;
-	char *command = strtok(command_line, " \t\n");
+	char *command = _strtok(command_line, " \t\n");
 
 	if (command == NULL)
 		return (0);
