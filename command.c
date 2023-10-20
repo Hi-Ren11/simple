@@ -11,22 +11,18 @@ int run_command(char *command_line, char *filename)
 {
 	pid_t child_pid;
 	int status = 0;
-	char *command = _strtok(command_line, " \t\n");
+	int i;
+	char **arguments = tokenize_arguments(command_line);
 
-	if (command == NULL)
-		return (0);
-	if (_strcmp(command, "exit") == 0)
-	{
-		my_exit(NULL);
-	}
-	if (command != NULL)
+	if (!arguments)
+		return (-1);
+
+	if (arguments[0] != NULL)
 	{
 		child_pid = fork();
 		if (child_pid == 0)
 		{
-			char *envp[] = {NULL};
-
-			if (execve(command, &command, envp) == -1)
+			if (execve(arguments[0], arguments, environ) == -1)
 			{
 				if (filename)
 					perror(filename);
@@ -42,6 +38,11 @@ int run_command(char *command_line, char *filename)
 		{
 			waitpid(child_pid, &status, 0);
 		}
+		for (i = 0; arguments[i] != NULL; i++)
+		{
+			free(arguments[i]);
+		}
+		free(arguments);
 	}
 	return (status);
 }

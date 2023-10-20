@@ -1,6 +1,8 @@
 #ifndef GMAMA_H
 #define GMAMA_H
 
+extern char **environ;
+
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,6 +14,8 @@
 char *_getline(void);
 int run_command(char *command, char *filename);
 void my_exit(char **input_token);
+char **tokenize_input(char *str, char *delim);
+char **tokenize_arguments(char *command_line);
 
 /* Strings */
 char *_strdup(char *s);
