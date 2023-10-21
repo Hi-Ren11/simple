@@ -22,6 +22,7 @@ void my_exit(char **input_token)
 	{
 		free(input_token);
 	}
+
 	if (errno > 255)
 	{
 		errno %= 256;

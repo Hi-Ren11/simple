@@ -23,5 +23,6 @@ char *_getline(void)
 	{
 		line[ReadRV - 1] = '\0';
 	}
+
 	return (line);
 }

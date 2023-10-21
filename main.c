@@ -10,29 +10,41 @@
 
 int main(int argc, char **argv)
 {
-	int status = 0;
 	char *line;
-	(void) argc;
+	int status = 0;
+	int interactive = isatty(STDIN_FILENO);
+
+	(void)argc;
+	(void)argv;
 
 	while (1)
 	{
-		if (isatty(STDIN_FILENO))
+		if (interactive)
 		{
 			write(STDOUT_FILENO, "$ ", 2);
 		}
+
 		line = _getline();
 
 		if (line == NULL)
 		{
-			if (isatty(STDIN_FILENO))
+			if (interactive)
 			{
 				write(STDOUT_FILENO, "\n", 1);
 			}
 			break;
 		}
-		status = run_command(line, argv[0]);
+
+		if (interactive)
+		{
+			status = run_command(line, argv[0]);
+		}
+		else
+		{
+			status = run_command(line, NULL);
+		}
+
 		free(line);
 	}
-
 	return (status);
 }
